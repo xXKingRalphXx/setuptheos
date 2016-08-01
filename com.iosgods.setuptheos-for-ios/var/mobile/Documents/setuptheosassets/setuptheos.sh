@@ -63,7 +63,7 @@ sdk() {
   echo "Installing iOS SDK..."
   echo
   cd /var/theos/sdks/ || error_exit "$LINENO: Unable to Change Directory."
-  # For reasons unknown, tar screws up if you don't run the following command as root
+  # Even if you have root permissions, tar screws up if you don't run the following command with su root -c
   su root -c "curl -ksL \"https://sdks.website/dl/iPhoneOS9.2.sdk.tbz2\" | tar -xj -C $THEOS/sdks/"
   echo "The iOS 9.2 SDK has been configured."
 }
@@ -133,11 +133,11 @@ packages() {
   dpkg -l class-dump | grep -q "" && echo "class-dump is installed" || echo "Installing class-dump..." && apt-get install class-dump
   dpkg -l diffultils | grep -q "" && echo "diffultils is installed" || echo "Installing diffultils..." && apt-get install diffultils
   dpkg -l ncurses | grep -q "" && echo "ncurses is installed" || echo "Installing ncurses..." && apt-get install ncurses
+  dpkg -l rsync | grep -q "" && echo "rsync is installed" || echo "Installing rsync..." && apt-get install rsync
   dpkg -l lzma | grep -q "" && echo "lzma is installed" || echo "Installing lzma..." && apt-get install lzma
   dpkg -l make | grep -q "" && echo "make is installed" || echo "Installing make..." && apt-get install make
   dpkg -l less | grep -q "" && echo "less is installed" || echo "Installing less..." && apt-get install less
   dpkg -l sudo | grep -q "" && echo "sudo is installed" || echo "Installing sudo..." && apt-get install sudo
-  dpkg -l ldid | grep -q "" && echo "ldid is installed" || echo "Installing ldid..." && apt-get install ldid
   dpkg -l gzip | grep -q "" && echo "gzip is installed" || echo "Installing gzip..." && apt-get install gzip
   dpkg -l rzip | grep -q "" && echo "rzip is installed" || echo "Installing rzip..." && apt-get install rzip
   dpkg -l wget | grep -q "" && echo "wget is installed" || echo "Installing wget..." && apt-get install wget
