@@ -1,0 +1,31 @@
+#!/bin/bash
+FILE="setuptheos.sh"
+PROGNAME=$(basename "$0")
+
+
+function error_exit
+{
+   echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
+   echo "Fatal Error"
+   exit 1
+}
+
+cd /usr/bin || error_exit "$LINENO: Unable to Change Directory."
+echo "Checking for old versions of setuptheos..."
+if [ -f "$FILE" ]; then
+  rm -f -- setuptheos.sh || error_exit "$LINENO: Unable to Remove File."
+  echo "All old versions of the setuptheos script have been removed."
+  echo "Proceeding with installation."
+else
+  echo
+  echo "No old versions of the setuptheos script exists."
+  echo "Proceeding with installation."
+fi
+cd /var/mobile/Documents/setuptheosassets || error_exit "$LINENO: Unable to Change Directory."
+chmod 0755 setuptheos.sh
+chown mobile:mobile setuptheos.sh
+mv setuptheos.sh /usr/bin || error_exit "$LINENO: Unable to move setuptheos script."
+echo
+echo "Thank you for installing setuptheos."
+echo
+exit 0

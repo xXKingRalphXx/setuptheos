@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSTextCell</string>
+			<key>label</key>
+			<string>Developed by KingRalph</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>iosgods</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>iosgods@2x.png</string>
+			<key>label</key>
+			<string>Visit iOSGods.com</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>link1</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>Donate@3x.png</string>
+			<key>label</key>
+			<string>Donate To The Author</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>link2</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>KingRalph@3x.png</string>
+			<key>label</key>
+			<string>Visit The Author On iOSGods.com</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>link3</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>Tutorial@3x.png</string>
+			<key>label</key>
+			<string>View The Tutorial</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>respring</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>icon</key>
+			<string>respring@3x.png</string>
+			<key>label</key>
+			<string>Respring</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>setuptheos © 2015 KingRalph.</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>setuptheos credits</string>
+</dict>
+</plist>

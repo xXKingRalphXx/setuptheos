@@ -1,0 +1,18 @@
+#!/bin/bash
+PROGNAME=$(basename $0)
+
+
+function error_exit
+{
+  echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
+  echo "Fatal Error"
+  exit 1
+}
+
+cd /var/mobile/Documents || error_exit "$LINENO: Unable to Change Directory."
+if [ -d "setuptheosassets" ]; then
+   rm -rf -- setuptheosassets || error_exit "$LINENO: Unable to Remove File."
+fi
+mkdir setuptheosassets || error_exit "$LINENO: Unable to Make Directory."
+
+exit 0

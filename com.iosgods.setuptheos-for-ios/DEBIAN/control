@@ -1,0 +1,11 @@
+Package: com.iosgods.setuptheos
+Name: setuptheos
+Depends: mobilesubstrate, PreferenceLoader, bash, grep, rsync, unzip, coreutils, coreutils-bin, findutils, sed, curl
+Architecture: iphoneos-arm
+Description: Setup theos with just one command!
+Maintainer: KingRalph <d.babalola@rocketmail.com>
+Author: KingRalph <d.babalola@rocketmail.com>
+Section: Tweaks
+Homepage: http://iosgods.com/topic/13072-how-to-easily-install-theos-on-any-ios-device-setuptheos/
+Version: 1.0.9.8
+Installed-Size: 1337
