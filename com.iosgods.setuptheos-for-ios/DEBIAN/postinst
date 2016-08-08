@@ -13,18 +13,11 @@ function error_exit
 cd /usr/bin || error_exit "$LINENO: Unable to Change Directory."
 echo "Checking for old versions of setuptheos..."
 if [ -f "$FILE" ]; then
-  rm -f -- setuptheos.sh || error_exit "$LINENO: Unable to Remove File."
-  echo "All old versions of the setuptheos script have been removed."
-  echo "Proceeding with installation."
-else
-  echo
-  echo "No old versions of the setuptheos script exists."
-  echo "Proceeding with installation."
+  rm -f -- $FILE || error_exit "$LINENO: Unable to Remove File."
+  echo "The old version of setuptheos has been removed..."
 fi
-cd /var/mobile/Documents/setuptheosassets || error_exit "$LINENO: Unable to Change Directory."
-chmod 0755 setuptheos.sh
-chown mobile:mobile setuptheos.sh
-mv setuptheos.sh /usr/bin || error_exit "$LINENO: Unable to move setuptheos script."
+chmod 0755 /usr/bin/$FILE
+chown mobile:mobile /usr/bin/$FILE
 echo
 echo "Thank you for installing setuptheos."
 echo

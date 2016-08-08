@@ -17,30 +17,33 @@ theos() {
   echo
   echo "Installing theos..."
   echo
-  if [ -d "$THEOS" ]; then
+  if [ -d "theos" ]; then
     echo "Existing version of theos detected."
     echo
     echo "Removing existing version..."
     echo
-    rm -rf -- $THEOS
+    rm -rf theos
     echo "Existing versions of theos have been removed"
     echo
   fi
   echo "Installing theos..."
+  # But first, let's disable SSL verification
+  git config --global http.sslVerify false
+  # Install theos...
   git clone --recursive https://github.com/theos/theos.git
+  # Then re-enable it
+  git config --global http.sslVerify true
   echo
   echo "Done"
-  mkdir /var/theos/include/writedata
-  mv $ASSETS/writedata.h /var/theos/include/writedata/writedata.h
+  mv $ASSETS/writedata.h /var/theos/include/writeData.h
   echo
   echo "Configuring theos environment variable..."
   echo
   grep -q "export THEOS=/var/theos" /etc/profile || echo "export THEOS=/var/theos" >> /etc/profile
   echo
   echo "Setting permissions for theos folder..."
-  cd /var || error_exit "$LINENO: Unable to Change Directory."
-  chmod -R 0755 theos
-  chown -R nobody:nobody theos
+  chmod -R 0755 /var/theos
+  chown -R nobody:nobody /var/theos
   echo "Done."
   echo
   echo "Signing Binaries..."
@@ -63,7 +66,7 @@ sdk() {
   echo "Installing iOS SDK..."
   echo
   cd /var/theos/sdks/ || error_exit "$LINENO: Unable to Change Directory."
-  # Even if you have root permissions, tar screws up if you don't run the following command with su root -c
+  # Tar and curl may screw over if you don't run the following command with su root -c
   su root -c "curl -ksL \"https://sdks.website/dl/iPhoneOS9.2.sdk.tbz2\" | tar -xj -C $THEOS/sdks/"
   echo "The iOS 9.2 SDK has been configured."
 }
@@ -73,7 +76,7 @@ templates() {
   echo
   if [ -d "/var/theos/" ]; then
     cd $ASSETS || error_exit "$LINENO: Unable to Change Directory. Theos is not currently installed..."
-    mv -f /var/mobile/Documents/setuptheosassets/templates/iphone/*.tar /var/theos/templates/iphone/
+    mv -f templates/iphone/*.tar /var/theos/templates/iphone/
     echo
     echo "Nic templates have been configured... (Courtesy of iOSGods.com)"
   else
@@ -83,7 +86,7 @@ templates() {
 
 packages() {
   echo "Configuring source files..."
-  cd /var/mobile/Documents/setuptheosassets || error_exit "$LINENO: Unable to Change Directory. The asset folder has been (re)moved"
+  cd $ASSETS || error_exit "$LINENO: Unable to Change Directory. The asset folder has been (re)moved"
   chmod 0755 setuptheos*.list
   chown mobile:wheel setuptheos*.list
   mv setuptheos*.list /var/mobile/Library/Caches/com.saurik.Cydia/
@@ -121,6 +124,7 @@ packages() {
   echo "Configuring debian packages..."
   echo
   # Bruh...
+  # I'll fix this...later...
   dpkg -l net.angelxwind.mobileterminal-applesdk | grep -q "" && echo "net.angelxwind.mobileterminal-applesdk is installed" || echo "Installing net.angelxwind.mobileterminal-applesdk..." && apt-get install net.angelxwind.mobileterminal-applesdk
   dpkg -l org.coolstar.iostoolchain | grep -q "" && echo "org.coolstar.iostoolchain is installed" || echo "Installing org.coolstar.iostoolchain..." && apt-get install org.coolstar.iostoolchain
   dpkg -l org.coolstar.llvm-clang | grep -q "" && echo "org.coolstar.llvm-clang is installed" || echo "Installing org.coolstar.llvm-clang..." && apt-get install org.coolstar.llvm-clang
