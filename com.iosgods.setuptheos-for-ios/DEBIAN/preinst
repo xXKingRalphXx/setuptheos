@@ -1,6 +1,6 @@
 #!/bin/bash
-PROGNAME = $(basename "$0")
-FILE = "setuptheos.sh"
+PROGNAME="${0}"
+FILE="setuptheos.sh"
 
 function error_exit
 {
