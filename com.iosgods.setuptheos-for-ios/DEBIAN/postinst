@@ -1,21 +1,6 @@
 #!/bin/bash
 FILE="setuptheos.sh"
 PROGNAME=$(basename "$0")
-
-
-function error_exit
-{
-   echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
-   echo "Fatal Error"
-   exit 1
-}
-
-cd /usr/bin || error_exit "$LINENO: Unable to Change Directory."
-echo "Checking for old versions of setuptheos..."
-if [ -f "$FILE" ]; then
-  rm -f -- $FILE || error_exit "$LINENO: Unable to Remove File."
-  echo "The old version of setuptheos has been removed..."
-fi
 chmod 0755 /usr/bin/$FILE
 chown mobile:mobile /usr/bin/$FILE
 echo

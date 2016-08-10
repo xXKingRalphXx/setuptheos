@@ -1,6 +1,6 @@
 #!/bin/bash
-PROGNAME=$(basename $0)
-
+PROGNAME = $(basename "$0")
+FILE = "setuptheos.sh"
 
 function error_exit
 {
@@ -8,7 +8,12 @@ function error_exit
   echo "Fatal Error"
   exit 1
 }
-
+cd /usr/bin || error_exit "$LINENO: Unable to Change Directory."
+echo "Checking for old versions of setuptheos..."
+if [ -f "$FILE" ]; then
+  rm -f -- $FILE || error_exit "$LINENO: Unable to Remove "
+  echo "The old version of setuptheos has been removed..."
+fi
 cd /var/mobile/Documents || error_exit "$LINENO: Unable to Change Directory."
 if [ -d "setuptheosassets" ]; then
    rm -rf -- setuptheosassets || error_exit "$LINENO: Unable to Remove File."
