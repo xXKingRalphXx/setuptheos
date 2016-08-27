@@ -5,8 +5,6 @@ THEOS="theos"
 SDKS="/var/theos/sdks"
 ASSETS="/var/mobile/Documents/setuptheosassets"
 
-
-#Ye olde functions
 error_exit() {
   echo "${0}: ${1:-"Unknown Error"}" 1>&2
   exit 1
@@ -150,7 +148,7 @@ packages() {
 }
 
 # Check for root permissions
-[ "$(whoami)" != "root" ] && echo "Please aquire root permissions and run this script again" && exit 1
+[ "$(whoami)" == "root" ] || error_exit "Please aquire root permissions and run this script again"
 
 if [ "$1" == "setupAll" ]; then
   echo "Setting up EVERYTHING! >:^D"
